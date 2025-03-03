@@ -1,0 +1,55 @@
+﻿@model IEnumerable<palesaStudyGroup.Models.StudyGroupMember>
+
+@{
+    ViewBag.Title = "Study Group Members";
+}
+@* provide the heading name for the page*@
+<h2>Study Group Members</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@* create the table for the group members*@
+<table class="table">
+    <tr>
+        <th>@* column names are displayed using the model,s property name*@
+            @Html.DisplayNameFor(model => model.StudentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+    @* Loop through each study group member in the Model (the list passed from the controller). *@
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @* Display the EmailAddress for the current study group member. *@
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+
+        </table>
